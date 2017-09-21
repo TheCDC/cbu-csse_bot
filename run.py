@@ -32,6 +32,8 @@ def handle_command(command, channel):
             response = "You rolled a d{} and got {}!".format(s, n)
         except Exception as e:
             response = "Your attempts to confuse me are futile!"
+    elif command.startswith("/say"):
+        response = '"{}"'.format(command[len("/say"):])
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
