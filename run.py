@@ -28,6 +28,7 @@ def handle_command(command, channel):
     if command.startswith(EXAMPLE_COMMAND):
         response = "Sure...write some more code then I can do that!"
     elif command.startswith("roll d"):
+        # dice rolling routine
         try:
             dice = [int(i[1:]) for i in dice_pattern.findall(command)]
             rolls = [random.randint(1, s) for s in dice]
@@ -37,6 +38,7 @@ def handle_command(command, channel):
         except Exception as e:
             response = "Your attempts to confuse me are futile!"
     elif command.startswith("/say "):
+        # quoting routine
         response = '"{}"'.format(command[len("/say "):])
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
