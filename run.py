@@ -25,10 +25,13 @@ def handle_command(command, channel):
                "* command with numbers, delimited by spaces."
     if command.startswith(EXAMPLE_COMMAND):
         response = "Sure...write some more code then I can do that!"
-    elif command.starts("roll d"):
-        s = int(command.split("d")[1])
-        n = random.randint(1, s)
-        response = "You rolled a d{} and got {}!".format(s, n)
+    elif command.startswith("roll d"):
+        try:
+            s = int(command.split("d")[1])
+            n = random.randint(1, s)
+            response = "You rolled a d{} and got {}!".format(s, n)
+        except Exception as e:
+            response = "Your attempts to confuse me are futile!"
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
