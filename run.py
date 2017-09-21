@@ -2,7 +2,7 @@ import os
 import time
 from slackclient import SlackClient
 import random
-
+import re
 # starterbot's ID as an environment variable
 BOT_ID = os.environ.get("BOT_ID")
 
@@ -12,6 +12,8 @@ EXAMPLE_COMMAND = "do"
 
 # instantiate Slack & Twilio clients
 slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
+
+dice_pattern = re.compile("d[0-9]+")
 
 
 def handle_command(command, channel):
@@ -27,9 +29,11 @@ def handle_command(command, channel):
         response = "Sure...write some more code then I can do that!"
     elif command.startswith("roll d"):
         try:
-            s = int(command.split("d")[1])
-            n = random.randint(1, s)
-            response = "You rolled a d{} and got {}!".format(s, n)
+            dice = [int(i[1:]) for i in dice_pattern.findall(command)]
+            rolls = [random.randint(1, s) for s in dice]
+
+            response = "You rolled {} = {}".format(
+                " + ".join(map(str, rolls)), sum(rolls))
         except Exception as e:
             response = "Your attempts to confuse me are futile!"
     elif command.startswith("/say "):

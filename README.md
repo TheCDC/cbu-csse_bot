@@ -12,4 +12,4 @@ BOT_ID=*********
 
 This `.env` file is how Heroku supplies environment variables to the app. These environment variables are necessary for the bot to interact with/have access to a particular channel.
 
-When the .env is in place you acn run the bot locally with `heroku local`.
+When the .env is in place you can run the bot locally with `heroku local`.
