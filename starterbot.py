@@ -4,8 +4,7 @@ from slackclient import SlackClient
 
 # starterbot's ID as an environment variable
 BOT_ID = os.environ.get("BOT_ID")
-if BOT_ID is None:
-	raise RuntimeError("BOT_ID is not configured!")
+
 # constants
 AT_BOT = "<@" + BOT_ID + ">"
 EXAMPLE_COMMAND = "do"
