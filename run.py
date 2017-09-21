@@ -1,6 +1,7 @@
 import os
 import time
 from slackclient import SlackClient
+import logging
 
 # starterbot's ID as an environment variable
 BOT_ID = os.environ.get("BOT_ID")
