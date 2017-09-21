@@ -1,7 +1,7 @@
 import os
 import time
 from slackclient import SlackClient
-import logging
+import random
 
 # starterbot's ID as an environment variable
 BOT_ID = os.environ.get("BOT_ID")
@@ -25,6 +25,10 @@ def handle_command(command, channel):
                "* command with numbers, delimited by spaces."
     if command.startswith(EXAMPLE_COMMAND):
         response = "Sure...write some more code then I can do that!"
+    elif command.starts("roll d"):
+        s = int(command.split("d")[1])
+        n = random.randint(1, s)
+        response = "You rolled a d{} and got {}!".format(s, n)
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
 
