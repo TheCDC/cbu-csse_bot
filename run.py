@@ -23,8 +23,7 @@ def handle_command(command, channel):
         returns back what it needs for clarification.
     """
     print(command, channel)
-    response = "Not sure what you mean. Use the *" + EXAMPLE_COMMAND + \
-               "* command with numbers, delimited by spaces."
+    response = "Valid commands are '/say' and 'roll'"
     if command.startswith(EXAMPLE_COMMAND):
         response = "Sure...write some more code then I can do that!"
     elif command.startswith("roll d"):
